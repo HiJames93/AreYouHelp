@@ -36,15 +36,14 @@ def get_exp_to_cache():
             for file in os.listdir(script_dir):
                 # 先读配置文件
                 if file[-3:] == "ini":
-                    exp_dir = {"dir_name": "", "exp_list": []}
                     menu_item_list = {"item_info": [], "item_equipment_list": []}
-                    # 分成两个部分读取
+
                     config = configparser.ConfigParser()
                     config.read(os.path.join(script_dir, file))
                     base = config.items('base')
                     script_info = config.items('script_info')
                     script_path = config.items('script_path')
-
+                    # 写了配置就读
                     if len(base) > 0:
                         item_info = {}
                         for key, value in base:
@@ -57,6 +56,8 @@ def get_exp_to_cache():
                                 menu_item_list["item_equipment_list"].append({"name": scriptInfo[index], "path": scriptPath[index]})
                             menu_list.append(menu_item_list)
 
+
+# 生成目录并运行程序
 def running_tools():
     global menu_list
     while True:
