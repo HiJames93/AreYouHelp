@@ -49,6 +49,7 @@ def get_exp_to_cache():
                         for key, value in base:
                             item_info[key] = value
                         menu_item_list["item_info"] = item_info
+                        # 只检查有没有写脚本简介 因为根据约定写了配置简介那么就有配置文件路径
                         if len(script_info) > 0 :
                             scriptInfo = script_info[0][1].split(",")
                             scriptPath = script_path[0][1].split(",")
