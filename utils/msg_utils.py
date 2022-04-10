@@ -4,7 +4,7 @@ import logging
 
 class sys_utils:
 
-    def __init__(self, log_filename="../core/dev_ops.log"):
+    def __init__(self, log_filename="dev_ops.log"):
         # Define a Handler and set a format which output to file
         logging.basicConfig(
             level=logging.DEBUG,  # 定义输出到文件的log级别，

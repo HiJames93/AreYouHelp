@@ -25,11 +25,11 @@ def check_conf():
 def get_exp_to_cache():
     import configparser
     # 把该目录下的文件夹读取到缓存
-    root_path = r'../exp'
+    root_path = r'exp'
     global menu_list
     global sysUtils
 
-    for dirpath, dirnames, filenames in os.walk(r'../exp'):
+    for dirpath, dirnames, filenames in os.walk(r'./exp'):
         # 获取每个菜单下的功能
         for dir in dirnames:
             # 找到目录下的所有文件
@@ -77,14 +77,16 @@ def running_tools():
             break
         # 选择具体服务
         item_menu = menu_list[int(choice)]["item_equipment_list"]
-        for index in range(len(item_menu)):
-            print(f'【{index}】{item_menu[index]["name"]}')
-        sec_choice = input(">>q/d ")
-        if sec_choice == "q":
-            sysUtils.out_msg(msg=f'返回一级目录')
-            break
-        script_path = item_menu[int(sec_choice)]["path"]
-        os.system(f"python3 {script_path}")
+        # 打印二级目录
+        while True:
+            for index in range(len(item_menu)):
+                print(f'【{index}】{item_menu[index]["name"]}')
+            sec_choice = input(">>q/d ")
+            if sec_choice == "q":
+                sysUtils.out_msg(msg=f'返回一级目录')
+                break
+            script_path = item_menu[int(sec_choice)]["path"]
+            os.system(f"python3 {script_path}")
 
 
 if __name__ == '__main__':
