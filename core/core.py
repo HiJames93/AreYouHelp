@@ -27,6 +27,7 @@ def get_exp_to_cache():
     # 把该目录下的文件夹读取到缓存
     root_path = r'../exp'
     global menu_list
+    global sysUtils
 
     for dirpath, dirnames, filenames in os.walk(r'../exp'):
         # 获取每个菜单下的功能
@@ -56,11 +57,14 @@ def get_exp_to_cache():
                             for index in range(0, len(scriptInfo)):
                                 menu_item_list["item_equipment_list"].append({"name": scriptInfo[index], "path": scriptPath[index]})
                             menu_list.append(menu_item_list)
+    sysUtils.out_msg(msg="插件加载完成！")
 
 
 # 生成目录并运行程序
 def running_tools():
     global menu_list
+    global sysUtils
+    sysUtils.out_msg(msg="启动前加载完毕！开始运行程序！")
     while True:
         print("~"*40)
         print("\tAre You Help ?\t".center(20, "~"))
@@ -69,6 +73,7 @@ def running_tools():
             print(f'{index}.{base["name"]}\t\t\t【{base["desc"]} - {base["version"]}】')
         choice = input(">>q/d ")
         if choice == "q":
+            sysUtils.out_msg(msg="退出程序")
             break
         # 选择具体服务
         item_menu = menu_list[int(choice)]["item_equipment_list"]
@@ -76,6 +81,7 @@ def running_tools():
             print(f'【{index}】{item_menu[index]["name"]}')
         sec_choice = input(">>q/d ")
         if sec_choice == "q":
+            sysUtils.out_msg(msg=f'返回一级目录')
             break
         script_path = item_menu[int(sec_choice)]["path"]
         os.system(f"python3 {script_path}")
