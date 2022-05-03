@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.105.148:22">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.105.130:22">
     <serverData>
-      <paths name="root@192.168.105.138:22">
+      <paths name="gails@192.168.1.100:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="root@192.168.105.148:22">
+      <paths name="root@192.168.105.130:22">
         <serverdata>
           <mappings>
             <mapping deploy="/root/tools/AreYouHelp" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.105.138:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

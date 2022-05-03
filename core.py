@@ -29,34 +29,33 @@ def get_exp_to_cache():
     global menu_list
     global sysUtils
 
-    for dirpath, dirnames, filenames in os.walk(r'./exp'):
-        # 获取每个菜单下的功能
-        for dir in dirnames:
-            # 找到目录下的所有文件
-            script_dir = os.path.join(root_path, dir)
-            for file in os.listdir(script_dir):
-                # 先读配置文件
-                if file[-3:] == "ini":
-                    menu_item_list = {"item_info": [], "item_equipment_list": []}
+    exp_dir = os.getcwd()+"/"+root_path
+    file_list = os.listdir(exp_dir)
+    for file in file_list:
+        if os.path.isdir(exp_dir+"/"+file) is True:
+            if os.path.isfile(exp_dir+"/"+file+"/exp.ini") is True:
+                print("找到了"+exp_dir+"/"+file+"/exp.ini")
+                menu_item_list = {"item_info": [], "item_equipment_list": []}
 
-                    config = configparser.ConfigParser()
-                    config.read(os.path.join(script_dir, file))
-                    base = config.items('base')
-                    script_info = config.items('script_info')
-                    script_path = config.items('script_path')
-                    # 写了配置就读
-                    if len(base) > 0:
-                        item_info = {}
-                        for key, value in base:
-                            item_info[key] = value
-                        menu_item_list["item_info"] = item_info
-                        # 只检查有没有写脚本简介 因为根据约定写了配置简介那么就有配置文件路径
-                        if len(script_info) > 0 :
-                            scriptInfo = script_info[0][1].split(",")
-                            scriptPath = script_path[0][1].split(",")
-                            for index in range(0, len(scriptInfo)):
-                                menu_item_list["item_equipment_list"].append({"name": scriptInfo[index], "path": scriptPath[index]})
-                            menu_list.append(menu_item_list)
+                config = configparser.ConfigParser()
+                config.read(exp_dir+"/"+file+"/exp.ini")
+                base = config.items('base')
+                script_info = config.items('script_info')
+                script_path = config.items('script_path')
+                # 写了配置就读
+                if len(base) > 0:
+                    item_info = {}
+                    for key, value in base:
+                        item_info[key] = value
+                    menu_item_list["item_info"] = item_info
+                    # 只检查有没有写脚本简介 因为根据约定写了配置简介那么就有配置文件路径
+                    if len(script_info) > 0:
+                        scriptInfo = script_info[0][1].split(",")
+                        scriptPath = script_path[0][1].split(",")
+                        for index in range(0, len(scriptInfo)):
+                            menu_item_list["item_equipment_list"].append(
+                                {"name": scriptInfo[index], "path": scriptPath[index]})
+                        menu_list.append(menu_item_list)
     sysUtils.out_msg(msg="插件加载完成！")
 
 
